@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Car Price Predictor</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .prediction {
+            margin-top: 25px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            background-color: #e8f5e9;
+        }
+
+        .prediction h2 {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <!-- Page heading -->
+        <div class="text-center mb-4">
+            <h1>Car Price Predictor</h1>
+
+            <p class="text-muted">
+                Enter the car details to predict its price.
+            </p>
+        </div>
+
+
+        <div class="card shadow p-4">
+
+            <form action="/predict" method="POST">
+
+                <div class="row">
+
+
+                    <!-- Symboling -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Symboling</label>
+
+                        <input type="number" class="form-control" name="symboling" value="0" required>
+                    </div>
+
+
+                    <!-- Fuel Type -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Fuel Type</label>
+
+                        <select class="form-select" name="fueltype" required>
+                            <option value="gas">Gas</option>
+                            <option value="diesel">Diesel</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Aspiration -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Aspiration</label>
+
+                        <select class="form-select" name="aspiration" required>
+                            <option value="std">Standard</option>
+                            <option value="turbo">Turbo</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Door Number -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Number of Doors</label>
+
+                        <select class="form-select" name="doornumber" required>
+                            <option value="four">Four</option>
+                            <option value="two">Two</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Car Body -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Car Body</label>
+
+                        <select class="form-select" name="carbody" required>
+                            <option value="sedan">Sedan</option>
+                            <option value="hatchback">Hatchback</option>
+                            <option value="wagon">Wagon</option>
+                            <option value="hardtop">Hardtop</option>
+                            <option value="convertible">Convertible</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Drive Wheel -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Drive Wheel</label>
+
+                        <select class="form-select" name="drivewheel" required>
+                            <option value="fwd">FWD</option>
+                            <option value="rwd">RWD</option>
+                            <option value="4wd">4WD</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Engine Location -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Engine Location</label>
+
+                        <select class="form-select" name="enginelocation" required>
+                            <option value="front">Front</option>
+                            <option value="rear">Rear</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Wheelbase -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Wheelbase</label>
+
+                        <input type="number" step="any" class="form-control" name="wheelbase" value="95" required>
+                    </div>
+
+
+                    <!-- Car Length -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Car Length</label>
+
+                        <input type="number" step="any" class="form-control" name="carlength" value="175" required>
+                    </div>
+
+
+                    <!-- Car Width -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Car Width</label>
+
+                        <input type="number" step="any" class="form-control" name="carwidth" value="66" required>
+                    </div>
+
+
+                    <!-- Car Height -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Car Height</label>
+
+                        <input type="number" step="any" class="form-control" name="carheight" value="54" required>
+                    </div>
+
+
+                    <!-- Curb Weight -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Curb Weight</label>
+
+                        <input type="number" step="any" class="form-control" name="curbweight" value="2500" required>
+                    </div>
+
+
+                    <!-- Engine Type -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Engine Type</label>
+
+                        <select class="form-select" name="enginetype" required>
+                            <option value="ohc">OHC</option>
+                            <option value="ohcf">OHCF</option>
+                            <option value="ohcv">OHCV</option>
+                            <option value="dohc">DOHC</option>
+                            <option value="dohcv">DOHCV</option>
+                            <option value="l">L</option>
+                            <option value="rotor">Rotor</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Cylinder Number -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Number of Cylinders</label>
+
+                        <select class="form-select" name="cylindernumber" required>
+                            <option value=4>4</option>
+                            <option value=6>6</option>
+                            <option value=5>5</option>
+                            <option value=8>8</option>
+                            <option value=3>3</option>
+                            <option value=12>12</option>
+                            <option value=2>2</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Engine Size -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Engine Size</label>
+
+                        <input type="number" step="any" class="form-control" name="enginesize" value="130" required>
+                    </div>
+
+
+                    <!-- Fuel System -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Fuel System</label>
+
+                        <select class="form-select" name="fuelsystem" required>
+                            <option value="mpfi">MPFI</option>
+                            <option value="2bbl">2BBL</option>
+                            <option value="idi">IDI</option>
+                            <option value="1bbl">1BBL</option>
+                            <option value="spdi">SPDI</option>
+                            <option value="4bbl">4BBL</option>
+                            <option value="mfi">MFI</option>
+                            <option value="spfi">SPFI</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Bore Ratio -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Bore Ratio</label>
+
+                        <input type="number" step="any" class="form-control" name="boreratio" value="3.2" required>
+                    </div>
+
+
+                    <!-- Stroke -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Stroke</label>
+
+                        <input type="number" step="any" class="form-control" name="stroke" value="3.4" required>
+                    </div>
+
+
+                    <!-- Compression Ratio -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Compression Ratio</label>
+
+                        <input type="number" step="any" class="form-control" name="compressionratio" value="9" required>
+                    </div>
+
+
+                    <!-- Horsepower -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Horsepower</label>
+
+                        <input type="number" step="any" class="form-control" name="horsepower" value="100" required>
+                    </div>
+
+
+                    <!-- Peak RPM -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Peak RPM</label>
+
+                        <input type="number" step="any" class="form-control" name="peakrpm" value="5000" required>
+                    </div>
+
+
+                    <!-- City MPG -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">City MPG</label>
+
+                        <input type="number" step="any" class="form-control" name="citympg" value="25" required>
+                    </div>
+
+
+                    <!-- Highway MPG -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Highway MPG</label>
+
+                        <input type="number" step="any" class="form-control" name="highwaympg" value="30" required>
+                    </div>
+
+                </div>
+
+
+                <!-- Submit -->
+                <div class="d-grid mt-3">
+
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        Predict Car Price
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- Prediction result -->
+            {% if prediction is defined %}
+
+            <div class="prediction">
+
+                <p class="mb-1">
+                    Predicted Car Price
+                </p>
+
+                <h2>
+                    {{ "%.2f"|format(prediction) }}
+                </h2>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+```
